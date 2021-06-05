@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class LoginpageComponent implements OnInit {
   userId;
   input;
+  pmovies;
   title: string = 'Web';
 
   constructor(private userService: UserService, private router: Router) { }
@@ -21,6 +22,10 @@ export class LoginpageComponent implements OnInit {
       username: '',
       password: ''
       // email: ''
+    };
+    this.pmovies = {
+      title: '',
+      description: ''
     };
   }
 
@@ -78,6 +83,27 @@ export class LoginpageComponent implements OnInit {
         console.log('error', error);
       }
     );
+  }
+  getMovieData() {
+    this.userService.getMovies().subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log('error', error);
+      }
+    );
+  }
+  postMovieData() {
+    this.userService.postMovies(this.pmovies).subscribe(
+      response => {
+        console.log('Done');
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }

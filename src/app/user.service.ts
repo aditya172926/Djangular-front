@@ -30,5 +30,11 @@ export class UserService {
   getUsers(id): Observable<any> {
     return this.http.get('http://127.0.0.1:8000/api/users/' + id + '/', {headers: this.authHeaders});
   }
+  getMovies(): Observable<any> {
+    return this.http.get('http://127.0.0.1:8000/api/movies/', {headers: this.authHeaders});
+  }
+  postMovies(md): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/movies/', md, {headers: this.authHeaders});
+  }
 
 }
